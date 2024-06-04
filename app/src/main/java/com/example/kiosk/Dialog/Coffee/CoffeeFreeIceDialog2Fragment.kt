@@ -2,23 +2,17 @@ package com.example.kiosk.Dialog.Coffee
 
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import com.example.kiosk.Dialog.Coffee.CoffeeFreeHotDialogFragment.CustomDialogListener
-import com.example.kiosk.R
-import com.example.kiosk.databinding.FragmentCoffeeFreeIceDialogBinding
-import com.example.kiosk.databinding.FragmentCoffeePayDialogBinding
+import com.example.kiosk.databinding.FragmentCoffeeFreeIceDialog2Binding
 import com.example.kiosk.model.CafeData
 
-class CoffeeFreeIceDialogFragment : DialogFragment() {
+class CoffeeFreeIceDialog2Fragment : DialogFragment() {
 
-    private var _binding: FragmentCoffeeFreeIceDialogBinding? = null
+    private var _binding: FragmentCoffeeFreeIceDialog2Binding? = null
     private val binding get() = _binding
 
     private var cafeData: CafeData? = null
@@ -37,7 +31,7 @@ class CoffeeFreeIceDialogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCoffeeFreeIceDialogBinding.inflate(layoutInflater)
+        _binding = FragmentCoffeeFreeIceDialog2Binding.inflate(layoutInflater)
         return binding!!.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
@@ -60,50 +54,20 @@ class CoffeeFreeIceDialogFragment : DialogFragment() {
             }
         }
 
-        binding!!.iceMin.setOnClickListener {
-            if(cafeData!!.icefreeoption[1]==0){
-
-                selectsizeButton(binding!!.iceMin)
-                cafeData!!.icefreeoption[1]=1
-            }
-            else if(cafeData!!.icefreeoption[1]==1){
-                deselectsizeButton(binding!!.iceMin)
-                cafeData!!.icefreeoption[1]=0
-            }
-            else {
-                selectsizeButton(binding!!.iceMin)
-                deselectsizeButton(binding!!.iceMax)
-                cafeData!!.icefreeoption[1]=1
-            }
-        }
-
-        var iceMaxBoolean:Boolean=false
-
         binding!!.iceMax.setOnClickListener {
-            if(cafeData!!.icefreeoption[1]==0){
+            if(cafeData!!.icefreeoption[0]==0){
 
-                selectsizeButton(binding!!.iceMin)
-                cafeData!!.icefreeoption[1]=2
+                selectsizeButton(binding!!.iceMax)
+                cafeData!!.icefreeoption[0]=2
             }
             else if(cafeData!!.icefreeoption[1]==2){
-                deselectsizeButton(binding!!.iceMin)
-                cafeData!!.icefreeoption[1]=0
+                deselectsizeButton(binding!!.iceMax)
+                cafeData!!.icefreeoption[0]=0
             }
             else {
-                selectsizeButton(binding!!.iceMin)
-                deselectsizeButton(binding!!.iceMax)
-                cafeData!!.icefreeoption[1]=2
-            }
-        }
-
-        binding!!.water.setOnClickListener {
-            if(cafeData!!.icefreeoption[2]==0){
-                deselectsizeButton(binding!!.water)
-                cafeData!!.icefreeoption[2]=1
-            }
-            else{
-                selectsizeButton(binding!!.water)
-                cafeData!!.icefreeoption[2]=0
+                selectsizeButton(binding!!.iceMax)
+                deselectsizeButton(binding!!.iceMin)
+                cafeData!!.icefreeoption[0]=2
             }
         }
 

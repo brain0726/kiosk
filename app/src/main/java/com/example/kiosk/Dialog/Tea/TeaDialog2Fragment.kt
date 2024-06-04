@@ -1,34 +1,33 @@
-package com.example.kiosk.Dialog.Coffee
+package com.example.kiosk.Dialog.Tea
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
-import com.example.kiosk.R
-import com.example.kiosk.databinding.FragmentCoffeeDialogBinding
+import com.example.kiosk.Dialog.Coffee.CoffeeFreeHotDialog1Fragment
+import com.example.kiosk.Dialog.Coffee.CoffeeFreeIceDialog1Fragment
+import com.example.kiosk.Dialog.Coffee.CoffeePayDialogFragment
+import com.example.kiosk.databinding.FragmentTeaDialog1Binding
+import com.example.kiosk.databinding.FragmentTeaDialog2Binding
 import com.example.kiosk.model.CafeData
 
-class CoffeeDialogFragment(context: Context) : DialogFragment() {
+class TeaDialog2Fragment : DialogFragment() {
 
     interface CustomDialogListener{
-        fun onPositiveClicked(price: CafeData);
+        fun onPositiveClicked(data:CafeData);
     }
     private var customDialogListener:CustomDialogListener?=null
 
-    private var _binding: FragmentCoffeeDialogBinding? = null
+    private var _binding: FragmentTeaDialog2Binding? = null
     private val binding get() = _binding
 
     private var cafeData: CafeData? = null
 
     // 사용할 때 null 체크를 해야 함
-    private fun notifyListener(Data: CafeData) {
-        customDialogListener?.onPositiveClicked(Data)
+    private fun notifyListener(data: CafeData) {
+        customDialogListener?.onPositiveClicked(data)
     }
 
     override fun onCreateView(
@@ -36,66 +35,30 @@ class CoffeeDialogFragment(context: Context) : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding= FragmentCoffeeDialogBinding.inflate(layoutInflater)
+        _binding= FragmentTeaDialog2Binding.inflate(layoutInflater)
 
         arguments?.let {
             cafeData = it.getParcelable("CafeData")
         }
         binding!!.coffeeImage.setImageResource(cafeData!!.src)
-        val price=cafeData!!.price
-        binding!!.coffeePrice.text="$price"
+        if(cafeData!!.price!=null){
+            val price=cafeData!!.price
+            binding!!.coffeePrice.text="$price"
+        }
+        cafeData!!.ice=2
+        cafeData!!.size=1
         binding!!.countPrice.text="0"
         binding!!.coffeeName.text = cafeData!!.name
 
-        binding!!.iceButton.setOnClickListener{
-            selectdegreeButton(binding!!.iceButton)
-            deselectdegreeButton(binding!!.hotButton)
-            cafeData!!.ice=1
-        }
-        binding!!.hotButton.setOnClickListener{
-            selectdegreeButton(binding!!.hotButton)
-            deselectdegreeButton(binding!!.iceButton)
-            cafeData!!.ice=2
-        }
-
-        binding!!.largeButton.setOnClickListener{
-            selectsizeButton(binding!!.largeButton)
-            deselectsizeButton(binding!!.extraButton)
-            if (cafeData!!.price != null) {
-                cafeData!!.count=binding!!.countNum.text.toString().toInt()
-                if(cafeData!!.size==2){
-                    cafeData!!.price = cafeData!!.price - 1000
-                    cafeData!!.finalprice = cafeData!!.price*cafeData!!.count
-                }
-                else {
-                    cafeData!!.finalprice = cafeData!!.price * cafeData!!.count
-                }
-                cafeData!!.size=1 //largesize
-                val finalprice=cafeData!!.finalprice
-                binding!!.countPrice.text="$finalprice"
-            }
-        }
-        binding!!.extraButton.setOnClickListener {
-            selectsizeButton(binding!!.extraButton)
-            deselectsizeButton(binding!!.largeButton)
-            if (cafeData!!.price != null) {
-                cafeData!!.count=binding!!.countNum.text.toString().toInt()
-                cafeData!!.price = cafeData!!.price + 1000
-                cafeData!!.finalprice = cafeData!!.price*cafeData!!.count
-                val finalprice=cafeData!!.finalprice
-                cafeData!!.size=2 //extrasize
-                binding!!.countPrice.text="$finalprice"
-            }
-        }
 
         binding?.payButton?.setOnClickListener {
 
-            val dialog = CoffeePayDialogFragment()
+            val dialog = TeaPayDialogFragment()
 
             val args = Bundle()
             args.putParcelable("CafeData", cafeData)
             dialog.arguments=args
-            dialog.setDialogListener(object : CoffeePayDialogFragment.CustomDialogListener {
+            dialog.setDialogListener(object : TeaPayDialogFragment.CustomDialogListener {
                 override fun onPositiveClicked(Data: CafeData) {
                     cafeData=Data
                     cafeData!!.finalprice = cafeData!!.price!!*cafeData!!.count
@@ -107,12 +70,12 @@ class CoffeeDialogFragment(context: Context) : DialogFragment() {
         }
         binding!!.freeButton.setOnClickListener {
             if(cafeData!!.ice==1) {//ice
-                val dialog = CoffeeFreeIceDialogFragment()
+                val dialog = TeaFreeIceDialogFragment()
 
                 val args = Bundle()
                 args.putParcelable("CafeData", cafeData)
                 dialog.arguments = args
-                dialog.setDialogListener(object : CoffeeFreeIceDialogFragment.CustomDialogListener {
+                dialog.setDialogListener(object : TeaFreeIceDialogFragment.CustomDialogListener {
                     override fun onPositiveClicked(Data: CafeData) {
                         cafeData=Data
                         cafeData!!.finalprice = cafeData!!.price!!*cafeData!!.count
@@ -123,12 +86,12 @@ class CoffeeDialogFragment(context: Context) : DialogFragment() {
                 dialog.show(childFragmentManager, "CoffeePayDialogFragment")
             }
             else if(cafeData!!.ice==2){//hot
-                val dialog = CoffeeFreeHotDialogFragment()
+                val dialog = TeaFreeHotDialogFragment()
 
                 val args = Bundle()
                 args.putParcelable("CafeData", cafeData)
                 dialog.arguments = args
-                dialog.setDialogListener(object : CoffeeFreeHotDialogFragment.CustomDialogListener {
+                dialog.setDialogListener(object : TeaFreeHotDialogFragment.CustomDialogListener {
                     override fun onPositiveClicked(Data: CafeData) {
                         cafeData=Data
                         cafeData!!.finalprice = cafeData!!.price!!*cafeData!!.count
@@ -173,20 +136,6 @@ class CoffeeDialogFragment(context: Context) : DialogFragment() {
         return binding!!.root
     }
 
-    private fun selectdegreeButton(button: Button) {
-        button.setBackgroundColor(Color.parseColor("#FFFFFF"))
-        if (button.id == binding!!.iceButton.id) {
-            button.setBackgroundResource(R.drawable.ice_button_border)
-            button.setTextColor(Color.parseColor("#1478FF"))
-        } else {
-            button.setBackgroundResource(R.drawable.hot_button_border)
-            button.setTextColor(Color.parseColor("#FF98A3"))
-        }
-    }
-    private fun deselectdegreeButton(button: Button) {
-        button.setBackgroundResource(R.drawable.button_deselected)
-        button.setTextColor(Color.parseColor("#808080"))
-    }
     private fun selectsizeButton(button: ImageButton) {
         button.alpha = 1.0f // 완전 불투명
     }

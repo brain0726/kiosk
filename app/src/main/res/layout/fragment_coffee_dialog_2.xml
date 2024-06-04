@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    tools:context=".Dialog.Coffee.CoffeeDialogFragment"
+    tools:context=".Dialog.Coffee.CoffeeDialog1Fragment"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
@@ -197,10 +197,52 @@
             android:layout_height="wrap_content"
             android:text="추가"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:gravity="center"
+            android:text="휘핑"/>
+
+        <Button
+            android:id="@+id/whipping1"
+            android:alpha="0.5"
+            style="@style/CustomButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text="보통"
+            />
+
+        <Button
+            android:id="@+id/whipping2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/CustomButtonStyle"
+            android:layout_weight="6"
+            android:alpha="0.5"
+            android:text="없음"
+            />
+
+        <Button
+            android:id="@+id/whipping3"
+            style="@style/CustomButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:alpha="0.5"
+            android:text="조금"
+            />
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4" />
+        android:layout_weight="3" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -266,6 +308,7 @@
         >
         <Button
             android:id="@+id/cancleButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"
@@ -278,6 +321,7 @@
 
         <Button
             android:id="@+id/acceptButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"

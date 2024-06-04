@@ -42,6 +42,7 @@ class CoffeePayDialogFragment : DialogFragment() {
         val countID = arrayOf(binding!!.count1,binding!!.count2,binding!!.count3,binding!!.count4,binding!!.count5,binding!!.count6,binding!!.count7,binding!!.count8,binding!!.count9)
         val minusID = arrayOf(binding!!.minus1,binding!!.minus2,binding!!.minus3,binding!!.minus4,binding!!.minus5,binding!!.minus6,binding!!.minus7,binding!!.minus8,binding!!.minus9)
 
+
         arguments?.let {
             cafeData = it.getParcelable("CafeData")
         }

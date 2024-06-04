@@ -30,21 +30,28 @@ class ThirdFragment : Fragment() {
             R.layout.activity_menu_croissant, R.layout.activity_menu_croquemonsieur,
             R.layout.activity_menu_plainbagel, R.layout.activity_menu_pretzels
         )
-        val type=3//coffee
+        val type=3//bread
         val coffeeids= arrayOf(21,22,23,24)
         val dialogid= arrayOf(1,1,1,1)
-        val names= arrayOf("아메리카노","카페라떼","바닐라라떼","카푸치노")
+        val names= arrayOf("크루아상","크로크무슈","플레인베이글","프레즐")
         val srcs = arrayOf(
-            R.drawable.americano,
-            R.drawable.cafelatte,
-            R.drawable.vanillalatte,
-            R.drawable.cafemocha
+            R.drawable.croissant,
+            R.drawable.croquemonsieur,
+            R.drawable.plainbagel,
+            R.drawable.pretzels
         )
         //count=1
         val prices=arrayOf(
-            3200,4200,4500,4500
+            2900,4700,2500,2700
         )
-        val payoptionsize= 9
+        val payoptionsize= 1
+
+        val dialogfreeiceids= arrayOf(0,0,0,0)
+        val dialogfreehotids= arrayOf(0,0,0,0)
+
+
+        val freehotoptionsize= arrayOf(1,1,1,1)
+        val freeiceoptionsize= arrayOf(1,1,1,1)
 
         override fun getCount(): Int {
             return menuID.size
@@ -66,6 +73,18 @@ class ThirdFragment : Fragment() {
             menuview!!.setOnClickListener{
                 val dialog = BreadDialogFragment()
                 val args = Bundle()
+
+                var payoption = Array(payoptionsize) { 0 }
+                var freeiceoption = Array(freeiceoptionsize[p0]) { 0 }
+
+                var freehotoption = Array(freehotoptionsize[p0]) { 0 }
+                val cafeData= CafeData(type,coffeeids[p0],dialogid[p0],
+                    dialogfreeiceids[p0],dialogfreehotids[p0],names[p0],
+                    srcs[p0],1,prices[p0],0,0,payoption,
+                    0,0,freehotoption,freeiceoption)
+
+                args.putParcelable("CafeData", cafeData)
+
                 dialog.arguments = args
                 dialog.show(parentFragmentManager, "CustomDialog")
             }

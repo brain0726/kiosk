@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.example.kiosk.Dialog.Coffee.CoffeeDialogFragment
+import com.example.kiosk.Dialog.Coffee.CoffeeDialog1Fragment
+import com.example.kiosk.Dialog.Coffee.CoffeeDialog2Fragment
 import com.example.kiosk.MainActivity
 import com.example.kiosk.R
 import com.example.kiosk.ViewPagerAdapter
@@ -35,7 +36,7 @@ class FirstFragment : Fragment(){
     private lateinit var viewpagerAdapter: ViewPagerAdapter
 
     var dataprice:Int?=null
-    private var customDialogListener: CoffeeDialogFragment.CustomDialogListener? = null
+    private var customDialogListener: CoffeeDialog1Fragment.CustomDialogListener? = null
 
     private var _binding: FragmentFirstMenuBinding? = null
     private val binding get() = _binding
@@ -51,7 +52,7 @@ class FirstFragment : Fragment(){
 
         return binding!!.root
     }
-    fun setDialogListener(customDialogListener: CoffeeDialogFragment.CustomDialogListener) {
+    fun setDialogListener(customDialogListener: CoffeeDialog1Fragment.CustomDialogListener) {
         this.customDialogListener = customDialogListener
     }
 
@@ -70,7 +71,7 @@ class FirstFragment : Fragment(){
         //Dataclass 정의
         val type=1//coffee
         val coffeeids= arrayOf(1,2,3,4)
-        val dialogid= arrayOf(1,1,1,1)
+        val dialogid= arrayOf(1,1,1,2)
         val dialogfreeiceids= arrayOf(1,2,3,3)
         val dialogfreehotids= arrayOf(1,1,2,2)
         val names= arrayOf("아메리카노","카페라떼","바닐라라떼","카푸치노")
@@ -114,24 +115,42 @@ class FirstFragment : Fragment(){
                 var freehotoption = Array(freehotoptionsize[p0]) { 0 }
                 val cafeData=CafeData(type,coffeeids[p0],dialogid[p0],
                     dialogfreeiceids[p0],dialogfreehotids[p0],names[p0],
-                    srcs[p0],1,prices[p0],0,payoption,
+                    srcs[p0],1,prices[p0],0,0,payoption,
                     0,0,freehotoption,freeiceoption)
+                if(cafeData.dialogid==1) {
+                    val dialog = CoffeeDialog1Fragment(menuview.context)
+                    val args = Bundle()
+                    args.putParcelable("CafeData", cafeData)
+                    dialog.arguments = args
 
-                val dialog = CoffeeDialogFragment(menuview.context)
-                val args = Bundle()
-                args.putParcelable("CafeData", cafeData)
-                dialog.arguments = args
+                    dialog.setDialogListener(object : CoffeeDialog1Fragment.CustomDialogListener {
+                        override fun onPositiveClicked(Data: CafeData) {
+                            var new_cafeData = Data
+                        mainActivity?.let { activity ->
+                            activity.cafeData=new_cafeData
+                        }
 
-                dialog.setDialogListener(object : CoffeeDialogFragment.CustomDialogListener {
-                    override fun onPositiveClicked(Data: CafeData) {
-                        var new_cafeData=Data
-//                        mainActivity?.let { activity ->
-//                            activity.money += (dataprice ?: 0)
-//                        }
+                        }
+                    })
+                    dialog.show(parentFragmentManager, "CustomDialog")
+                }
+                else if(cafeData.dialogid==2) {
+                    val dialog = CoffeeDialog2Fragment(menuview.context)
+                    val args = Bundle()
+                    args.putParcelable("CafeData", cafeData)
+                    dialog.arguments = args
 
-                    }
-                })
-                dialog.show(parentFragmentManager, "CustomDialog")
+                    dialog.setDialogListener(object : CoffeeDialog2Fragment.CustomDialogListener {
+                        override fun onPositiveClicked(Data: CafeData) {
+                            var new_cafeData = Data
+                            mainActivity?.let { activity ->
+                                activity.cafeData=new_cafeData
+                            }
+
+                        }
+                    })
+                    dialog.show(parentFragmentManager, "CustomDialog")
+                }
             }
             return menuview!!
         }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    tools:context=".Dialog.Coffee.CoffeeDialogFragment"
+    tools:context=".Dialog.Coffee.CoffeeDialog1Fragment"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
@@ -55,6 +55,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomButtonStyle"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Ice Only"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="horizontal">
 
@@ -75,7 +89,8 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageButton
                 android:id="@+id/largeButton"
@@ -86,31 +101,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Large"
-                android:textSize="20dp"
+                android:text="Regular"
+                android:textSize="15dp"
                 android:layout_gravity="center" />
         </LinearLayout>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <ImageButton
-                android:id="@+id/extraButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/extrasize" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Extra"
-                android:textSize="20dp"
-                android:layout_gravity="center" />
-        </LinearLayout>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -135,6 +133,7 @@
             android:layout_weight="4" />
         <Button
             android:id="@+id/payButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
@@ -159,6 +158,7 @@
             android:layout_weight="4" />
         <Button
             android:id="@+id/freeButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
@@ -234,6 +234,7 @@
         <Button
             android:id="@+id/cancleButton"
             android:layout_width="0dp"
+            style="@style/CustomButtonStyle"
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:text="취소" />
@@ -245,6 +246,7 @@
 
         <Button
             android:id="@+id/acceptButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"

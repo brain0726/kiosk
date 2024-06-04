@@ -16,7 +16,7 @@
             android:id="@+id/coffeeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/croissant" />
+            android:src="@drawable/americano" />
 
         <LinearLayout
             android:layout_width="177dp"
@@ -27,7 +27,7 @@
                 android:id="@+id/coffeeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="크루아상"/>
+                android:text="아메리카노"/>
 
             <View
                 android:layout_width="0dp"
@@ -53,6 +53,102 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/iceButton"
+            style="@style/ButtonIce"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text="ice"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/hotButton"
+            style="@style/ButtonHot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text="hot" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="3"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/largeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:src="@drawable/largesize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Large"
+                android:textSize="20dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/extraButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:src="@drawable/extrasize" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extra"
+                android:textSize="20dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -71,14 +167,40 @@
         <Button
             android:id="@+id/payButton"
             android:layout_width="0dp"
+            style="@style/CustomButtonStyle"
             android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="추가"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="무료옵션"
+            android:layout_width="0dp"
+            android:layout_weight="2"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+        <Button
+            android:id="@+id/freeButton"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            style="@style/CustomButtonStyle"
             android:layout_height="wrap_content"
             android:text="추가"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6" />
+        android:layout_weight="4" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -144,6 +266,7 @@
         >
         <Button
             android:id="@+id/cancleButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"
@@ -156,6 +279,7 @@
 
         <Button
             android:id="@+id/acceptButton"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"

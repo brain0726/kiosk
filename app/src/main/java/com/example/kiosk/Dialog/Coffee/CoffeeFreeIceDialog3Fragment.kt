@@ -1,27 +1,26 @@
-package com.example.kiosk.Dialog.Tea
+package com.example.kiosk.Dialog.Coffee
 
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
-import com.example.kiosk.Dialog.Tea.TeaDialog1Fragment.CustomDialogListener
-import com.example.kiosk.databinding.FragmentTeaFreeIceDialogBinding
+import com.example.kiosk.databinding.FragmentCoffeeFreeIceDialog3Binding
 import com.example.kiosk.model.CafeData
 
-class TeaFreeIceDialogFragment : DialogFragment() {
+class CoffeeFreeIceDialog3Fragment : DialogFragment() {
 
-    private var _binding: FragmentTeaFreeIceDialogBinding? = null
+    private var _binding: FragmentCoffeeFreeIceDialog3Binding? = null
     private val binding get() = _binding
 
+    private var cafeData: CafeData? = null
+
     interface CustomDialogListener{
-        fun onPositiveClicked(data: CafeData);
+        fun onPositiveClicked(Data: CafeData);
     }
     private var customDialogListener: CustomDialogListener?=null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +31,9 @@ class TeaFreeIceDialogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTeaFreeIceDialogBinding.inflate(layoutInflater)
+        _binding = FragmentCoffeeFreeIceDialog3Binding.inflate(layoutInflater)
         return binding!!.root
     }
-    private var cafeData: CafeData? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,25 +43,16 @@ class TeaFreeIceDialogFragment : DialogFragment() {
         }
         binding!!.coffeeName.text=cafeData!!.name
 
-
-
-        binding!!.iceMin.setOnClickListener {
+        binding!!.density.setOnClickListener {
             if(cafeData!!.icefreeoption[0]==0){
-
-                selectsizeButton(binding!!.iceMin)
+                deselectsizeButton(binding!!.density)
                 cafeData!!.icefreeoption[0]=1
             }
-            else if(cafeData!!.icefreeoption[0]==1){
-                deselectsizeButton(binding!!.iceMin)
+            else{
+                selectsizeButton(binding!!.density)
                 cafeData!!.icefreeoption[0]=0
             }
-            else {
-                selectsizeButton(binding!!.iceMin)
-                deselectsizeButton(binding!!.iceMax)
-                cafeData!!.icefreeoption[0]=1
-            }
         }
-
 
         binding!!.iceMax.setOnClickListener {
             if(cafeData!!.icefreeoption[0]==0){
@@ -80,6 +68,17 @@ class TeaFreeIceDialogFragment : DialogFragment() {
                 selectsizeButton(binding!!.iceMax)
                 deselectsizeButton(binding!!.iceMin)
                 cafeData!!.icefreeoption[0]=2
+            }
+        }
+
+        binding!!.syrup.setOnClickListener {
+            if(cafeData!!.icefreeoption[2]==0){
+                deselectsizeButton(binding!!.syrup)
+                cafeData!!.icefreeoption[2]=1
+            }
+            else{
+                selectsizeButton(binding!!.syrup)
+                cafeData!!.icefreeoption[2]=0
             }
         }
 
@@ -111,7 +110,7 @@ class TeaFreeIceDialogFragment : DialogFragment() {
     private fun deselectsizeButton(button: Button) {
         button.alpha = 0.5f // 약간 투명
     }
-    fun setDialogListener(listener: TeaFreeIceDialogFragment.CustomDialogListener) {
+    fun setDialogListener(listener: CustomDialogListener) {
         this.customDialogListener = listener
     }
 }

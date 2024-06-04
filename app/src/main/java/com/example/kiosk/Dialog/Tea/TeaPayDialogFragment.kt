@@ -11,11 +11,12 @@ import androidx.fragment.app.Fragment
 import com.example.kiosk.R
 import com.example.kiosk.databinding.FragmentCoffeePayDialogBinding
 import com.example.kiosk.databinding.FragmentTeaPayDialogBinding
+import com.example.kiosk.model.CafeData
 
 class TeaPayDialogFragment : DialogFragment() {
 
     interface CustomDialogListener{
-        fun onPositiveClicked(price:Int);
+        fun onPositiveClicked(data:CafeData);
     }
     private var customDialogListener: CustomDialogListener?=null
 
@@ -34,24 +35,27 @@ class TeaPayDialogFragment : DialogFragment() {
         return binding!!.root
     }
 
+    private var cafeData: CafeData? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val plusID = arrayOf(binding!!.plus1,binding!!.plus2,binding!!.plus3,binding!!.plus4,binding!!.plus5,binding!!.plus6,binding!!.plus7,binding!!.plus8,binding!!.plus9)
-        val countID = arrayOf(binding!!.count1,binding!!.count2,binding!!.count3,binding!!.count4,binding!!.count5,binding!!.count6,binding!!.count7,binding!!.count8,binding!!.count9)
-        val minusID = arrayOf(binding!!.minus1,binding!!.minus2,binding!!.minus3,binding!!.minus4,binding!!.minus5,binding!!.minus6,binding!!.minus7,binding!!.minus8,binding!!.minus9)
+        val plusID = arrayOf(binding!!.plus1,binding!!.plus2,binding!!.plus3,binding!!.plus4,binding!!.plus5,binding!!.plus6,binding!!.plus7,binding!!.plus8)
+        val countID = arrayOf(binding!!.count1,binding!!.count2,binding!!.count3,binding!!.count4,binding!!.count5,binding!!.count6,binding!!.count7,binding!!.count8)
+        val minusID = arrayOf(binding!!.minus1,binding!!.minus2,binding!!.minus3,binding!!.minus4,binding!!.minus5,binding!!.minus6,binding!!.minus7,binding!!.minus8)
 
-        var price=0
-        val name = arguments?.getString("name")
-        name?.let { Log.d("MyTag", it) }
-        binding!!.coffeeName.text=name
+        arguments?.let {
+            cafeData = it.getParcelable("CafeData")
+        }
+        binding!!.coffeeName.text=cafeData!!.name
 
 
         for (i in 0..plusID.size-1 step 1){
             plusID[i].setOnClickListener {
                 var count = countID[i].text.toString().toInt()
-                count+=1
-                price += plusID[i].tag.toString().toInt()
+                cafeData!!.payoption[i]+=1
+                count += 1
+                cafeData!!.price += plusID[i].tag.toString().toInt()
                 countID[i].text="$count"
 
             }
@@ -59,7 +63,8 @@ class TeaPayDialogFragment : DialogFragment() {
                 var count = countID[i].text.toString().toInt()
                 if (count>0){
                     count-=1
-                    price -= minusID[i].tag.toString().toInt()
+                    cafeData!!.payoption[i]-=1
+                    cafeData!!.price -= minusID[i].tag.toString().toInt()
                 }
                 countID[i].text="$count"
             }
@@ -67,8 +72,8 @@ class TeaPayDialogFragment : DialogFragment() {
 
         binding!!.payAccept.setOnClickListener {
             customDialogListener?.let { listener ->
-                price.let {price ->
-                    listener.onPositiveClicked(price)
+                cafeData.let {Data ->
+                    Data?.let { it1 -> listener.onPositiveClicked(it1) }
                 }
             }
             dialog?.dismiss()

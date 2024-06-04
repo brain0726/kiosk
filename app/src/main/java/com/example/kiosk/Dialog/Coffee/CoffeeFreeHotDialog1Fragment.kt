@@ -2,26 +2,22 @@ package com.example.kiosk.Dialog.Coffee
 
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
-import com.example.kiosk.Dialog.Coffee.CoffeeDialogFragment.CustomDialogListener
-import com.example.kiosk.R
-import com.example.kiosk.databinding.FragmentCoffeeFreeDialogBinding
-import com.example.kiosk.databinding.FragmentCoffeeFreeIceDialogBinding
+import com.example.kiosk.databinding.FragmentCoffeeFreeHotDialog1Binding
 import com.example.kiosk.model.CafeData
 
-class CoffeeFreeHotDialogFragment : DialogFragment() {
+class CoffeeFreeHotDialog1Fragment : DialogFragment() {
 
     interface CustomDialogListener{
         fun onPositiveClicked(Data: CafeData);
     }
     private var customDialogListener: CustomDialogListener?=null
 
-    private var _binding: FragmentCoffeeFreeDialogBinding? = null
+    private var _binding: FragmentCoffeeFreeHotDialog1Binding? = null
     private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +29,7 @@ class CoffeeFreeHotDialogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCoffeeFreeDialogBinding.inflate(layoutInflater)
+        _binding = FragmentCoffeeFreeHotDialog1Binding.inflate(layoutInflater)
         return binding!!.root
     }
 

@@ -1,6 +1,5 @@
 package com.example.kiosk.model
 
-import android.media.Image
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -14,6 +13,7 @@ data class CafeData (
     var src : Int,
     var count:Int,
     var price:Int,
+    var whipping:Int,
     var finalprice:Int,
     var payoption:Array<Int>,
     var ice:Int,
@@ -28,6 +28,7 @@ data class CafeData (
         parcel.readInt(),
         parcel.readInt(),
         parcel.readString() ?: "",
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
@@ -49,6 +50,7 @@ data class CafeData (
         parcel.writeInt(src)
         parcel.writeInt(count)
         parcel.writeInt(price)
+        parcel.writeInt(whipping)
         parcel.writeInt(finalprice)
         parcel.writeIntArray(payoption.toIntArray())
         parcel.writeInt(ice)

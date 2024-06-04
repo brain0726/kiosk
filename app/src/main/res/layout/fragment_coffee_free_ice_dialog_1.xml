@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Dialog.Coffee.CoffeeFreeIceDialogFragment">
+    tools:context=".Dialog.Coffee.CoffeeFreeIceDialog1Fragment">
     <TextView
         android:id="@+id/coffeeName"
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.5"
+            style="@style/CustomButtonStyle"
             android:text="연하게"/>
         <View
             android:layout_width="match_parent"
@@ -49,12 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.5"
+                style="@style/CustomButtonStyle"
                 android:text="얼음 조금"/>
             <Button
                 android:id="@+id/iceMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.5"
+                style="@style/CustomButtonStyle"
                 android:text="얼음 많이"/>
         </LinearLayout>
         <View
@@ -72,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.5"
+            style="@style/CustomButtonStyle"
             android:text="적게"/>
     </LinearLayout>
     <LinearLayout
@@ -81,6 +85,7 @@
         <Button
             android:id="@+id/freeCancel"
             android:layout_width="0dp"
+            style="@style/CustomButtonStyle"
             android:layout_weight="5"
             android:layout_height="wrap_content"
             android:text="취소"
@@ -89,6 +94,7 @@
         <Button
             android:id="@+id/freeAccept"
             android:layout_width="0dp"
+            style="@style/CustomButtonStyle"
             android:layout_weight="5"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

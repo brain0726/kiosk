@@ -11,14 +11,30 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="아이스티"
+        android:text="아메리카노"
         android:textSize="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="9" >
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="에스프레소 1샷"
+            android:textSize="20dp"
+            />
+        <Button
+            android:id="@+id/density"
+            style="@style/CustomButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            android:text="연하게"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#1478FF"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,8 +43,8 @@
             />
         <Button
             android:id="@+id/hot"
-            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
+            style="@style/CustomButtonStyle"
             android:layout_height="wrap_content"
             android:alpha="0.5"
             android:text="미지근하게"/>
@@ -42,17 +58,17 @@
             android:id="@+id/freeCancel"
             android:layout_width="0dp"
             android:layout_weight="5"
+            style="@style/CustomButtonStyle"
             android:layout_height="wrap_content"
             android:text="취소"
-            style="@style/CustomButtonStyle"
             android:layout_gravity="left"/>
 
         <Button
             android:id="@+id/freeAccept"
+            style="@style/CustomButtonStyle"
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="wrap_content"
-            style="@style/CustomButtonStyle"
             android:layout_gravity="right"
             android:text="선택완료"/>
     </LinearLayout>

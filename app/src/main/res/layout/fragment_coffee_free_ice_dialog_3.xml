@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Dialog.Coffee.CoffeeFreeIceDialogFragment">
+    tools:context=".Dialog.Coffee.CoffeeFreeIceDialog1Fragment">
     <TextView
         android:id="@+id/coffeeName"
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.5"
+            style="@style/CustomButtonStyle"
             android:text="연하게"/>
         <View
             android:layout_width="match_parent"
@@ -37,16 +38,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="온도"
+            android:text="얼음"
             android:textSize="20dp"
             />
-        <Button
-            android:id="@+id/hot"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="0.5"
-            android:text="미지근하게"/>
-
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/iceMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                style="@style/CustomButtonStyle"
+                android:text="얼음 조금"/>
+            <Button
+                android:id="@+id/iceMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                style="@style/CustomButtonStyle"
+                android:text="얼음 많이"/>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -54,15 +67,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="물/우유"
+            android:text="시럽"
             android:textSize="20dp"
             />
         <Button
-            android:id="@+id/water"
+            android:id="@+id/syrup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.5"
-            android:text="적게"/>
+            style="@style/CustomButtonStyle"
+            android:text="덜달게"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,6 +85,7 @@
         <Button
             android:id="@+id/freeCancel"
             android:layout_width="0dp"
+            style="@style/CustomButtonStyle"
             android:layout_weight="5"
             android:layout_height="wrap_content"
             android:text="취소"
@@ -79,6 +94,7 @@
         <Button
             android:id="@+id/freeAccept"
             android:layout_width="0dp"
+            style="@style/CustomButtonStyle"
             android:layout_weight="5"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
